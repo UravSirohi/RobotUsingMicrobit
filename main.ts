@@ -1,4 +1,7 @@
-radio.onReceivedNumber(function (receivedNumber) {
+radio.setGroup(144)
+radio.setTransmitPower(7)
+minibit.ledBrightness(0)
+radio.onReceivedNumber(function on_received_number(receivedNumber: number) {
     if (receivedNumber == 1) {
         minibit.stop(mbStopMode.Brake)
         basic.showLeds(`
@@ -7,7 +10,7 @@ radio.onReceivedNumber(function (receivedNumber) {
             # # # # #
             # # # # #
             # # # # #
-            `)
+        `)
     } else if (receivedNumber == 2) {
         minibit.mbBias(mbRobotDirection.Right, 0)
         minibit.mbBias(mbRobotDirection.Left, 0)
@@ -24,8 +27,12 @@ radio.onReceivedNumber(function (receivedNumber) {
         minibit.mbBias(mbRobotDirection.Right, 80)
         minibit.go(mbDirection.Forward, 60)
         basic.clearScreen()
+    } else if (receivedNumber == 6) {
+        minibit.rotate(mbRobotDirection.Left, 60)
+        basic.clearScreen()
+    } else if (receivedNumber == 7) {
+        minibit.rotate(mbRobotDirection.Right, 60)
+        basic.clearScreen()
     }
+    
 })
-radio.setGroup(144)
-radio.setTransmitPower(7)
-minibit.ledBrightness(0)
